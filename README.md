@@ -20,8 +20,28 @@ apps/
   desktop/src-tauri/      # Shell Tauri para Windows, Linux e macOS
 services/
   api/                    # Backend Spring Boot
-docker-compose.yml        # PostgreSQL e Redis locais
+docker-compose.yml        # Stack local completa (web, API, PostgreSQL e Redis)
 ```
+
+## Rodando tudo com Docker
+
+Com Docker e Docker Compose instalados, suba toda a aplicação com um único comando:
+
+```bash
+docker compose up --build
+```
+
+Depois que os serviços estiverem saudáveis, acesse:
+
+- Cliente web: `http://localhost:5173`
+- API/health check: `http://localhost:8080/api/health`
+- PostgreSQL: `localhost:5432` (banco, usuário e senha: `cosmos`)
+- Redis: `localhost:6379`
+
+O cliente encaminha as rotas `/api` e `/ws` internamente para a API. Os dados do
+PostgreSQL ficam preservados no volume `cosmos-postgres`. Para encerrar a stack,
+use `docker compose down`; para também apagar os dados locais, use
+`docker compose down --volumes`.
 
 ## Rodando o cliente
 
@@ -39,7 +59,7 @@ Com o Rust e o Tauri CLI instalados, o shell desktop pode ser iniciado com `carg
 ```bash
 docker compose up -d postgres redis
 cd services/api
-./mvnw spring-boot:run
+mvn spring-boot:run
 ```
 
 A API responde em `http://localhost:8080/api/health`.
