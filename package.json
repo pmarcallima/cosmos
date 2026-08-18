@@ -1,0 +1,11 @@
+{
+  "name": "cosmos",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["apps/client"],
+  "scripts": {
+    "dev": "npm --workspace apps/client run dev",
+    "build": "npm --workspace apps/client run build",
+    "preview": "npm --workspace apps/client run preview"
+  }
+}

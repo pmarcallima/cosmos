@@ -1,0 +1,19 @@
+[package]
+name = "cosmos-desktop"
+version = "0.1.0"
+description = "Cosmos desktop client"
+authors = ["Cosmos"]
+edition = "2021"
+
+[lib]
+name = "cosmos_desktop_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
